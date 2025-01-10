@@ -10,12 +10,21 @@ interface ContentCardProps {
 }
 
 const ContentCard = ({ brand, owner, ownershipType, additionalNotes }: ContentCardProps) => {
+  const getBadgeVariant = (type: string) => {
+    const lowercaseType = type.toLowerCase();
+    if (lowercaseType.includes("female")) return "secondary";
+    if (lowercaseType.includes("family")) return "primary";
+    if (lowercaseType.includes("founder")) return "default";
+    if (lowercaseType.includes("co-op")) return "outline";
+    return "default";
+  };
+
   return (
     <Card className="card-elevation material-motion hover:scale-[1.02] cursor-pointer">
       <CardHeader>
         <CardTitle className="text-lg flex items-center justify-between">
           {brand}
-          <Badge variant="secondary" className="ml-2">
+          <Badge variant={getBadgeVariant(ownershipType)} className="ml-2">
             {ownershipType}
           </Badge>
         </CardTitle>

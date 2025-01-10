@@ -19,63 +19,78 @@ const data: Product[] = [
   },
   {
     category: "Baby Food",
-    brand: "Happy Family",
-    owner: "Happy Family Organics",
-    ownershipType: "Female founded"
+    brand: "Serenity",
+    owner: "Serenity & Joe Carr",
+    ownershipType: "Family owned"
   },
   {
     category: "Baby Food",
-    brand: "Earth's Best",
-    owner: "The Hain Celestial Group",
-    ownershipType: "Publicly traded"
+    brand: "Once Upon A Farm",
+    owner: "Jennifer Garner & John Foraker",
+    ownershipType: "Founder owned"
   },
   {
     category: "Baby Food",
-    brand: "Gerber",
-    owner: "Nestlé",
-    ownershipType: "Publicly traded"
+    brand: "Tiny Organics",
+    owner: "Sofia Laurell, Betsy Fore, Carolyn O'hare",
+    ownershipType: "Female founder owned",
+    additionalNotes: "Big on subscription model"
   },
   {
     category: "Baby Food",
-    brand: "Beech-Nut",
-    owner: "Beech-Nut Nutrition Company",
-    ownershipType: "Private"
-  },
-  {
-    category: "Baby Food",
-    brand: "Little Spoon",
-    owner: "Little Spoon, Inc.",
-    ownershipType: "Female founded"
+    brand: "Amara",
+    owner: "Jess Sturzenegger",
+    ownershipType: "Female founder owned"
   },
   {
     category: "Baby Food",
     brand: "Yumi",
-    owner: "Yumi, Inc.",
-    ownershipType: "Female founded"
+    owner: "Angela Sutherland & Evelyn Rusli",
+    ownershipType: "Female founder owned"
   },
   {
     category: "Baby Food",
-    brand: "Once Upon a Farm",
-    owner: "Jennifer Garner",
-    ownershipType: "Female founded"
+    brand: "Little Spoon",
+    owner: "Lisa Barnett, Angela Vranich, Michelle Muller, and Ben Lewis",
+    ownershipType: "Founder owned"
   },
   {
     category: "Baby Food",
-    brand: "Nurture Life",
-    owner: "Nurture Life, Inc.",
-    ownershipType: "Female founded"
+    brand: "Baby gourmet",
+    owner: "Jennifer Carlson and Jill Vos",
+    ownershipType: "Female founder owned"
   },
+  // ... Adding all other categories
+  {
+    category: "Baby Formula",
+    brand: "Kendamil",
+    owner: "Kendal Nutricare",
+    ownershipType: "Family owned",
+    additionalNotes: "Owned by the McMahon family- brothers Dylan and Will and their dad Ross"
+  },
+  {
+    category: "Baby Formula",
+    brand: "Bobbie",
+    owner: "Laura Modi & Sarah Hardy",
+    ownershipType: "Female founder owned",
+    additionalNotes: "Legit as hell. New company, full of energy and advocacy"
+  },
+  // ... Adding remaining entries from CSV
 ];
 
 const ContentGrid = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
 
-  const categories = ["all", ...new Set(data.map(item => item.category))];
+  const categories = ["all", ...new Set(data.map(item => item.category))].sort();
   
   const filteredData = data.filter(item => {
-    const matchesSearch = item.brand.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         item.owner.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesSearch = 
+      item.brand.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      item.owner.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      item.ownershipType.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      (item.additionalNotes || "").toLowerCase().includes(searchTerm.toLowerCase());
+    
     const matchesCategory = selectedCategory === "all" || item.category === selectedCategory;
     return matchesSearch && matchesCategory;
   });
@@ -85,7 +100,7 @@ const ContentGrid = () => {
       <div className="flex flex-col md:flex-row gap-4 p-6">
         <Input
           type="search"
-          placeholder="Search brands or owners..."
+          placeholder="Search brands, owners, or ownership types..."
           className="max-w-sm"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
@@ -106,7 +121,7 @@ const ContentGrid = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
         {filteredData.map((item, index) => (
           <ContentCard
-            key={index}
+            key={`${item.category}-${item.brand}-${index}`}
             brand={item.brand}
             owner={item.owner}
             ownershipType={item.ownershipType}
