@@ -13,7 +13,7 @@ const ContentCard = ({ brand, owner, ownershipType, additionalNotes }: ContentCa
   const getBadgeVariant = (type: string) => {
     const lowercaseType = type.toLowerCase();
     if (lowercaseType.includes("female")) return "secondary";
-    if (lowercaseType.includes("family")) return "primary";
+    if (lowercaseType.includes("family")) return "default";
     if (lowercaseType.includes("founder")) return "default";
     if (lowercaseType.includes("co-op")) return "outline";
     return "default";
