@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 import ContentGrid from "@/components/ContentGrid";
 
 const Index = () => {
@@ -19,11 +20,12 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background flex flex-col">
       <Header toggleTheme={toggleTheme} isDark={isDark} />
-      <main className="container mx-auto animate-fade-in">
+      <main className="container mx-auto flex-grow animate-fade-in">
         <ContentGrid />
       </main>
+      <Footer />
     </div>
   );
 };
