@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ContentCard from "./ContentCard";
 import { Input } from "@/components/ui/input";
 import { Product } from "@/types/product";
@@ -933,9 +933,18 @@ const data: Product[] = [
   }
 ];
 
-const ContentGrid = () => {
+interface ContentGridProps {
+  initialCategory?: string;
+}
+
+const ContentGrid = ({ initialCategory = "all" }: ContentGridProps) => {
   const [searchTerm, setSearchTerm] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState<string>("all");
+  const [selectedCategory, setSelectedCategory] = useState<string>(initialCategory);
+
+  // Update selected category when initialCategory prop changes
+  useEffect(() => {
+    setSelectedCategory(initialCategory);
+  }, [initialCategory]);
 
   const categories = ["all", ...new Set(data.map(item => item.category))].sort();
   
