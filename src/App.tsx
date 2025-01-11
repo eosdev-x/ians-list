@@ -7,6 +7,7 @@ import Index from "./pages/Index";
 import Browse from "./pages/Browse";
 import Categories from "./pages/Categories";
 import About from "./pages/About";
+import Ownership from "./pages/Ownership";
 
 const queryClient = new QueryClient();
 
@@ -21,6 +22,7 @@ const App = () => (
           <Route path="/browse" element={<Browse />} />
           <Route path="/categories" element={<Categories />} />
           <Route path="/about" element={<About />} />
+          <Route path="/ownership" element={<Ownership />} />
         </Routes>
       </BrowserRouter>
     </TooltipProvider>

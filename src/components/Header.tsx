@@ -40,6 +40,13 @@ const Header = ({ toggleTheme, isDark }: HeaderProps) => {
           </Button>
           <Button
             variant="ghost"
+            className={location.pathname === "/ownership" ? "bg-accent" : ""}
+            asChild
+          >
+            <Link to="/ownership">Ownership</Link>
+          </Button>
+          <Button
+            variant="ghost"
             className={location.pathname === "/about" ? "bg-accent" : ""}
             asChild
           >
