@@ -3,6 +3,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Input } from "@/components/ui/input";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 interface CerealData {
   brand: string;
@@ -99,9 +100,30 @@ const cerealData: CerealData[] = [
   { brand: "Erin Baker's", owner: "Erin Baker's", ownershipType: "Founder Family Owned" }
 ];
 
+const feminineHygieneData: CerealData[] = [
+  { brand: "Playtex", owner: "Edgewell Personal Care", ownershipType: "Megacorp" },
+  { brand: "Tampax", owner: "Procter & Gamble", ownershipType: "Megacorp" },
+  { brand: "Kotex", owner: "Kimberly-Clark", ownershipType: "Megacorp" },
+  { brand: "U by Kotex", owner: "Kimberly-Clark", ownershipType: "Megacorp" },
+  { brand: "Stay Free", owner: "Energizer", ownershipType: "Megacorp" },
+  { brand: "7th Generation", owner: "Unilever", ownershipType: "Megacorp", notes: "But they sure looked natural..." },
+  { brand: "OB Tampons", owner: "Edgewell Personal Care", ownershipType: "Megacorp" },
+  { brand: "This is L.", owner: "Procter & Gamble", ownershipType: "Megacorp" },
+  { brand: "Carefree liners", owner: "Johnson & Johnson", ownershipType: "Megacorp" },
+  { brand: "Attitude", owner: "Jean-Francois Bernier", ownershipType: "Privately owned", notes: "He bought the company when it was teeny tiny and grew it. Apparently not private equity backed..." },
+  { brand: "Natracare", owner: "Susie Hewson", ownershipType: "Female Founder Owned", notes: "Since 1989! the GOAT" },
+  { brand: "Cora", owner: "Molly Haward", ownershipType: "Female Founder Owned" },
+  { brand: "August", owner: "Nadya Okamoto & Nick Jain", ownershipType: "Founder Owned" },
+  { brand: "The Honey Pot Company", owner: "Beatrice Dixon", ownershipType: "Female Founder and Family Owned", notes: "There was controversy over an ingredient change. The company was not sold or taken over" },
+  { brand: "Rael", owner: "", ownershipType: "Female Founder Owned", notes: "Three Kool Korean-American ladies. Legit" },
+  { brand: "Lola", owner: "Alex Friedman & Jordana Kier", ownershipType: "Female Founder Owned" },
+  { brand: "The FLEX Company", owner: "Lauren Scholte Wang", ownershipType: "Female Founder Owned", notes: "Disks, cups, etc" }
+];
+
 const Ownership = () => {
   const [isDark, setIsDark] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("cereal");
 
   React.useEffect(() => {
     if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
@@ -115,7 +137,9 @@ const Ownership = () => {
     document.documentElement.classList.toggle("dark");
   };
 
-  const filteredData = cerealData.filter(
+  const currentData = selectedCategory === "cereal" ? cerealData : feminineHygieneData;
+
+  const filteredData = currentData.filter(
     (item) =>
       item.brand.toLowerCase().includes(searchTerm.toLowerCase()) ||
       item.owner.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -126,8 +150,20 @@ const Ownership = () => {
     <div className="min-h-screen bg-background flex flex-col">
       <Header toggleTheme={toggleTheme} isDark={isDark} />
       <main className="container mx-auto flex-grow px-4 py-8 animate-fade-in">
-        <h1 className="text-4xl font-bold mb-8">Cereal Brand Ownership</h1>
-        <div className="mb-6">
+        <h1 className="text-4xl font-bold mb-8">Brand Ownership</h1>
+        <div className="flex flex-col sm:flex-row gap-4 mb-6">
+          <Select
+            value={selectedCategory}
+            onValueChange={setSelectedCategory}
+          >
+            <SelectTrigger className="w-[180px]">
+              <SelectValue placeholder="Select category" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="cereal">Cereal</SelectItem>
+              <SelectItem value="feminine-hygiene">Feminine Hygiene</SelectItem>
+            </SelectContent>
+          </Select>
           <Input
             type="search"
             placeholder="Search brands, owners, or ownership types..."
