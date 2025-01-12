@@ -18,8 +18,13 @@ const Header = ({ toggleTheme, isDark }: HeaderProps) => {
           <Button variant="ghost" size="icon" className="md:hidden">
             <Menu className="h-6 w-6" />
           </Button>
-          <Link to="/" className="text-2xl font-bold tracking-tight">
-            Ian&apos;s List
+          <Link to="/" className="flex items-center gap-2">
+            <img 
+              src="/lovable-uploads/bac26262-db8d-4711-9352-deb24cd1e213.png" 
+              alt="Logo" 
+              className="h-8 w-8"
+            />
+            <span className="text-2xl font-bold tracking-tight">Ian&apos;s List</span>
           </Link>
         </div>
         
