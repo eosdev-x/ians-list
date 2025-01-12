@@ -1,7 +1,6 @@
-export interface Product {
-  category: string;
+export interface ProductData {
   brand: string;
   owner: string;
   ownershipType: string;
-  additionalNotes?: string;
+  notes?: string;
 }
