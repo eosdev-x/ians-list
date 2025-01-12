@@ -120,6 +120,24 @@ const feminineHygieneData: CerealData[] = [
   { brand: "The FLEX Company", owner: "Lauren Scholte Wang", ownershipType: "Female Founder Owned", notes: "Disks, cups, etc" }
 ];
 
+const supplementsData: CerealData[] = [
+  { brand: "Nature Made", owner: "Otsuka Pharmaceutical Co.", ownershipType: "Mega Corporation" },
+  { brand: "One A Day", owner: "Bayer", ownershipType: "Mega Corporation" },
+  { brand: "Centrum", owner: "Haleon", ownershipType: "Mega Corporation", notes: "Previously owned by Pfizer and GSK" },
+  { brand: "Olly Nutrition", owner: "Unilever", ownershipType: "Mega Corporation" },
+  { brand: "Vitafusion", owner: "Church & Dwight", ownershipType: "Mega Corporation" },
+  { brand: "Nature's Bounty", owner: "Nestle", ownershipType: "Mega Corporation" },
+  { brand: "Goli Nutrition", owner: "Michael Bitensky", ownershipType: "Founder owned" },
+  { brand: "Vicks", owner: "Procter & Gamble and Helen of Troy", ownershipType: "Mega Corporation" },
+  { brand: "Nature's Way", owner: "Schwabe Group", ownershipType: "Mega Corporation" },
+  { brand: "Emergen-C", owner: "Pfizer", ownershipType: "Mega Corporation" },
+  { brand: "Simple Truth", owner: "Kroger", ownershipType: "Mega Corporation" },
+  { brand: "Garden of Life", owner: "Nestle", ownershipType: "Mega Corporation" },
+  { brand: "Natrol", owner: "Aurobindo Pharma USA inc.", ownershipType: "Mega Corporation" },
+  { brand: "Country Life", owner: "Lion Equity Partners", ownershipType: "Private Equity" },
+  { brand: "Oregon's Wild Harvest", owner: "Randy Buresh and Pam Martin-Buresh", ownershipType: "Family Owned" }
+];
+
 const Ownership = () => {
   const [isDark, setIsDark] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
@@ -137,7 +155,11 @@ const Ownership = () => {
     document.documentElement.classList.toggle("dark");
   };
 
-  const currentData = selectedCategory === "cereal" ? cerealData : feminineHygieneData;
+  const currentData = selectedCategory === "cereal" 
+    ? cerealData 
+    : selectedCategory === "feminine-hygiene" 
+    ? feminineHygieneData 
+    : supplementsData;
 
   const filteredData = currentData.filter(
     (item) =>
@@ -162,6 +184,7 @@ const Ownership = () => {
             <SelectContent>
               <SelectItem value="cereal">Cereal</SelectItem>
               <SelectItem value="feminine-hygiene">Feminine Hygiene</SelectItem>
+              <SelectItem value="supplements">Supplements</SelectItem>
             </SelectContent>
           </Select>
           <Input
