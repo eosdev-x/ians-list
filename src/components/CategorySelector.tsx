@@ -15,6 +15,7 @@ const CategorySelector = ({ value, onValueChange }: CategorySelectorProps) => {
         <SelectItem value="cereal">Cereal</SelectItem>
         <SelectItem value="feminine-hygiene">Feminine Hygiene</SelectItem>
         <SelectItem value="supplements">Supplements</SelectItem>
+        <SelectItem value="household">Household</SelectItem>
       </SelectContent>
     </Select>
   );

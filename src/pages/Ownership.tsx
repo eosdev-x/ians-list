@@ -4,7 +4,7 @@ import Footer from "@/components/Footer";
 import { Input } from "@/components/ui/input";
 import CategorySelector from "@/components/CategorySelector";
 import ProductTable from "@/components/ProductTable";
-import { cerealData, feminineHygieneData, supplementsData } from "@/data/productData";
+import { cerealData, feminineHygieneData, supplementsData, householdData } from "@/data/productData";
 
 const Ownership = () => {
   const [isDark, setIsDark] = useState(false);
@@ -27,7 +27,9 @@ const Ownership = () => {
     ? cerealData 
     : selectedCategory === "feminine-hygiene" 
     ? feminineHygieneData 
-    : supplementsData;
+    : selectedCategory === "supplements"
+    ? supplementsData
+    : householdData;
 
   const filteredData = currentData.filter(
     (item) =>
