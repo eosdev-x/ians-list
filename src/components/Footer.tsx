@@ -29,21 +29,6 @@ const Footer = () => {
             </nav>
           </div>
 
-          {/* Contact Information */}
-          <div className="space-y-4">
-            <h3 className="font-semibold text-lg">Contact</h3>
-            <div className="space-y-2">
-              <p>Questions or feedback?</p>
-              <a
-                href="mailto:contact@ianslist.org"
-                className="flex items-center gap-2 hover:text-primary transition-colors"
-              >
-                <Mail className="h-4 w-4" />
-                contact@ianslist.org
-              </a>
-            </div>
-          </div>
-
           {/* Social Links */}
           <div className="space-y-4">
             <h3 className="font-semibold text-lg">Connect</h3>
