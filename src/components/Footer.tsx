@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Github, Mail, Linkedin } from "lucide-react";
+import { Github, Mail, Twitter } from "lucide-react";
 
 const Footer = () => {
   return (
@@ -49,7 +49,7 @@ const Footer = () => {
             <h3 className="font-semibold text-lg">Connect</h3>
             <div className="flex space-x-4">
               <a
-                href="https://github.com/yourusername"
+                href="https://github.com/eosdev-x/ians-list"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:text-primary transition-colors"
@@ -58,13 +58,13 @@ const Footer = () => {
                 <Github className="h-6 w-6" />
               </a>
               <a
-                href="https://linkedin.com/in/yourusername"
+                href="https://x.com/IanCarrollShow"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:text-primary transition-colors"
-                aria-label="LinkedIn"
+                aria-label="Twitter"
               >
-                <Linkedin className="h-6 w-6" />
+                <Twitter className="h-6 w-6" />
               </a>
             </div>
           </div>
